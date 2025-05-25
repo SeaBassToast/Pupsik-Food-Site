@@ -15,8 +15,14 @@
             font-family: 'Playfair Display', 'Times New Roman', serif;
             background: linear-gradient(135deg, #f8f6f3, #e8e5e1);
             min-height: 100vh;
-            padding: 40px 20px;
+            padding: 20px 15px;
             color: #2c2c2c;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
         }
         
         .container {
@@ -29,12 +35,65 @@
             overflow: hidden;
         }
         
+        @media (max-width: 768px) {
+            .container {
+                border-radius: 4px;
+                margin: 0;
+            }
+        }
+        
         .header {
             background: linear-gradient(135deg, #1a1a1a, #2c2c2c);
             color: #f8f6f3;
             padding: 50px 40px;
             text-align: center;
             border-bottom: 2px solid #d4af37;
+            position: relative;
+        }
+        
+        .language-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .lang-option {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: #f8f6f3;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .lang-option:hover, .lang-option.active {
+            background: #d4af37;
+            color: #1a1a1a;
+            border-color: #d4af37;
+        }
+        
+        @media (max-width: 768px) {
+            .header {
+                padding: 30px 20px;
+            }
+            
+            .language-toggle {
+                top: 15px;
+                right: 15px;
+                gap: 5px;
+            }
+            
+            .lang-option {
+                padding: 6px 8px;
+                font-size: 0.8em;
+            }
         }
         
         .header h1 {
@@ -47,6 +106,12 @@
         
         .menu {
             padding: 50px 40px;
+        }
+        
+        @media (max-width: 768px) {
+            .menu {
+                padding: 30px 20px;
+            }
         }
         
         .menu-section {
@@ -65,9 +130,6 @@
         }
         
         .menu-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
             padding: 25px 20px;
             margin: 15px 0;
             background: #fafafa;
@@ -82,55 +144,61 @@
             border-color: #d4af37;
         }
         
-        .item-left {
+        .item-header {
             display: flex;
             align-items: center;
-            gap: 25px;
-            flex: 1;
+            gap: 20px;
+            margin-bottom: 15px;
         }
         
-        .food-icon {
-            width: 8px;
-            height: 8px;
-            background: #d4af37;
+        .food-emoji {
+            font-size: 2.5em;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
             border-radius: 50%;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
             flex-shrink: 0;
         }
         
         .item-info h3 {
             color: #1a1a1a;
-            margin-bottom: 8px;
+            margin: 0;
             font-size: 1.3em;
             font-weight: 400;
             letter-spacing: 0.5px;
         }
         
-        .item-info p {
+        .item-description {
             color: #666666;
             font-size: 1em;
             line-height: 1.5;
             font-style: italic;
+            margin-bottom: 15px;
         }
         
-        .item-controls {
+        .item-footer {
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 25px;
+            flex-wrap: wrap;
+            gap: 15px;
         }
         
         .price {
-            font-weight: 300;
-            color: #1a1a1a;
+            font-weight: 400;
+            color: #d4af37;
             font-size: 1.2em;
             letter-spacing: 0.5px;
-            min-width: 80px;
-            text-align: right;
         }
         
         .quantity-control {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
         
         .btn {
@@ -166,6 +234,12 @@
             background: #f8f6f3;
             padding: 50px 40px;
             border-top: 2px solid #d4af37;
+        }
+        
+        @media (max-width: 768px) {
+            .cart {
+                padding: 30px 20px;
+            }
         }
         
         .cart h2 {
@@ -242,22 +316,33 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>PUPSIK</h1>
-            <p>Exquisite Culinary Experience</p>
+            <div class="language-toggle">
+                <div class="lang-option active" onclick="changeLanguage('en')" data-lang="en">
+                    🇺🇸 EN
+                </div>
+                <div class="lang-option" onclick="changeLanguage('ru')" data-lang="ru">
+                    🇷🇺 RU
+                </div>
+                <div class="lang-option" onclick="changeLanguage('cs')" data-lang="cs">
+                    🇨🇿 CS
+                </div>
+            </div>
+            <h1 data-translate="title">PUPSIK</h1>
+            <p data-translate="subtitle">Exquisite Culinary Experience</p>
         </div>
         
         <div class="menu">
             <div class="menu-section">
-                <h2>Brunch</h2>
+                <h2 data-translate="brunch">Brunch</h2>
                 <div class="menu-item">
-                    <div class="item-left">
-                        <div class="food-icon"></div>
+                    <div class="item-header">
+                        <div class="food-emoji">🥞</div>
                         <div class="item-info">
-                            <h3>Syrniki</h3>
-                            <p>Russian cottage cheese pancakes with berry compote</p>
+                            <h3 data-translate="syrniki_name">Syrniki</h3>
                         </div>
                     </div>
-                    <div class="item-controls">
+                    <div class="item-description" data-translate="syrniki_desc">Russian cottage cheese pancakes with berry compote</div>
+                    <div class="item-footer">
                         <span class="price">195 Kč</span>
                         <div class="quantity-control">
                             <button class="btn btn-small" onclick="changeQuantity('syrniki', -1)">-</button>
@@ -268,14 +353,14 @@
                 </div>
                 
                 <div class="menu-item">
-                    <div class="item-left">
-                        <div class="food-icon"></div>
+                    <div class="item-header">
+                        <div class="food-emoji">🍳</div>
                         <div class="item-info">
-                            <h3>Golden Egg</h3>
-                            <p>Soft brioche bun with perfectly runny egg, crispy bacon, and house sauce</p>
+                            <h3 data-translate="golden_egg_name">Golden Egg</h3>
                         </div>
                     </div>
-                    <div class="item-controls">
+                    <div class="item-description" data-translate="golden_egg_desc">Soft brioche bun with perfectly runny egg, crispy bacon, and house sauce</div>
+                    <div class="item-footer">
                         <span class="price">165 Kč</span>
                         <div class="quantity-control">
                             <button class="btn btn-small" onclick="changeQuantity('golden-egg', -1)">-</button>
@@ -286,14 +371,14 @@
                 </div>
                 
                 <div class="menu-item">
-                    <div class="item-left">
-                        <div class="food-icon"></div>
+                    <div class="item-header">
+                        <div class="food-emoji">🥣</div>
                         <div class="item-info">
-                            <h3>Oat Bar</h3>
-                            <p>Creamy cheesecake-flavored oatmeal with graham cracker crumbs and berry topping</p>
+                            <h3 data-translate="oat_bar_name">Oat Bar</h3>
                         </div>
                     </div>
-                    <div class="item-controls">
+                    <div class="item-description" data-translate="oat_bar_desc">Creamy cheesecake-flavored oatmeal with graham cracker crumbs and berry topping</div>
+                    <div class="item-footer">
                         <span class="price">140 Kč</span>
                         <div class="quantity-control">
                             <button class="btn btn-small" onclick="changeQuantity('oat-bar', -1)">-</button>
@@ -305,16 +390,16 @@
             </div>
             
             <div class="menu-section">
-                <h2>Lunch</h2>
+                <h2 data-translate="lunch">Lunch</h2>
                 <div class="menu-item">
-                    <div class="item-left">
-                        <div class="food-icon"></div>
+                    <div class="item-header">
+                        <div class="food-emoji">🎁</div>
                         <div class="item-info">
-                            <h3>Mystery Lunch</h3>
-                            <p>Chef's surprise - always delicious, never the same twice</p>
+                            <h3 data-translate="mystery_lunch_name">Mystery Lunch</h3>
                         </div>
                     </div>
-                    <div class="item-controls">
+                    <div class="item-description" data-translate="mystery_lunch_desc">Chef's surprise - always delicious, never the same twice</div>
+                    <div class="item-footer">
                         <span class="price">220 Kč</span>
                         <div class="quantity-control">
                             <button class="btn btn-small" onclick="changeQuantity('mystery-lunch', -1)">-</button>
@@ -325,14 +410,14 @@
                 </div>
                 
                 <div class="menu-item">
-                    <div class="item-left">
-                        <div class="food-icon"></div>
+                    <div class="item-header">
+                        <div class="food-emoji">🐟</div>
                         <div class="item-info">
-                            <h3>Poke</h3>
-                            <p>Fresh cubed fish with rice, vegetables, and savory sauce</p>
+                            <h3 data-translate="poke_name">Poke</h3>
                         </div>
                     </div>
-                    <div class="item-controls">
+                    <div class="item-description" data-translate="poke_desc">Fresh cubed fish with rice, vegetables, and savory sauce</div>
+                    <div class="item-footer">
                         <span class="price">280 Kč</span>
                         <div class="quantity-control">
                             <button class="btn btn-small" onclick="changeQuantity('poke', -1)">-</button>
@@ -344,16 +429,16 @@
             </div>
             
             <div class="menu-section">
-                <h2>Dinner</h2>
+                <h2 data-translate="dinner">Dinner</h2>
                 <div class="menu-item">
-                    <div class="item-left">
-                        <div class="food-icon"></div>
+                    <div class="item-header">
+                        <div class="food-emoji">🍜</div>
                         <div class="item-info">
-                            <h3>Coconut Ramen</h3>
-                            <p>Rich coconut broth with noodles, vegetables, and herbs</p>
+                            <h3 data-translate="coconut_ramen_name">Coconut Ramen</h3>
                         </div>
                     </div>
-                    <div class="item-controls">
+                    <div class="item-description" data-translate="coconut_ramen_desc">Rich coconut broth with noodles, vegetables, and herbs</div>
+                    <div class="item-footer">
                         <span class="price">235 Kč</span>
                         <div class="quantity-control">
                             <button class="btn btn-small" onclick="changeQuantity('coconut-ramen', -1)">-</button>
@@ -364,14 +449,14 @@
                 </div>
                 
                 <div class="menu-item">
-                    <div class="item-left">
-                        <div class="food-icon"></div>
+                    <div class="item-header">
+                        <div class="food-emoji">🥩</div>
                         <div class="item-info">
-                            <h3>Mongo Beef</h3>
-                            <p>Tender beef stir-fry with mongolian-style sauce and vegetables</p>
+                            <h3 data-translate="mongo_beef_name">Mongo Beef</h3>
                         </div>
                     </div>
-                    <div class="item-controls">
+                    <div class="item-description" data-translate="mongo_beef_desc">Tender beef stir-fry with mongolian-style sauce and vegetables</div>
+                    <div class="item-footer">
                         <span class="price">340 Kč</span>
                         <div class="quantity-control">
                             <button class="btn btn-small" onclick="changeQuantity('mongo-beef', -1)">-</button>
@@ -382,14 +467,14 @@
                 </div>
                 
                 <div class="menu-item">
-                    <div class="item-left">
-                        <div class="food-icon"></div>
+                    <div class="item-header">
+                        <div class="food-emoji">🥗</div>
                         <div class="item-info">
-                            <h3>Something Healthy</h3>
-                            <p>Fresh seasonal salad with quinoa, avocado, and lemon dressing</p>
+                            <h3 data-translate="something_healthy_name">Something Healthy</h3>
                         </div>
                     </div>
-                    <div class="item-controls">
+                    <div class="item-description" data-translate="something_healthy_desc">Fresh seasonal salad with quinoa, avocado, and lemon dressing</div>
+                    <div class="item-footer">
                         <span class="price">190 Kč</span>
                         <div class="quantity-control">
                             <button class="btn btn-small" onclick="changeQuantity('something-healthy', -1)">-</button>
@@ -402,28 +487,126 @@
         </div>
         
         <div class="cart">
-            <h2>Your Order</h2>
+            <h2 data-translate="your_order">Your Order</h2>
             <div id="cart-items"></div>
             <div class="total">
-                Total: <span id="total">0</span> Kč
+                <span data-translate="total">Total</span>: <span id="total">0</span> Kč
             </div>
             
             <div class="customer-info">
-                <label for="customer-name">Name:</label>
-                <input type="text" id="customer-name" placeholder="Your name" value="Pupsik">
+                <label for="customer-name" data-translate="name_label">Name:</label>
+                <input type="text" id="customer-name" data-translate-placeholder="name_placeholder" placeholder="Your name" value="Pupsik">
                 
-                <label for="customer-phone">Phone:</label>
-                <input type="tel" id="customer-phone" placeholder="(555) 123-4567">
+                <label for="customer-phone" data-translate="phone_label">Phone:</label>
+                <input type="tel" id="customer-phone" data-translate-placeholder="phone_placeholder" placeholder="(555) 123-4567">
                 
-                <label for="pickup-time">Pickup Time:</label>
+                <label for="pickup-time" data-translate="pickup_time_label">Pickup Time:</label>
                 <input type="time" id="pickup-time">
             </div>
             
-            <button class="btn order-btn" onclick="placeOrder()">Place Order</button>
+            <button class="btn order-btn" onclick="placeOrder()" data-translate="place_order">Place Order</button>
         </div>
     </div>
 
     <script>
+        const translations = {
+            'en': {
+                'title': 'PUPSIK',
+                'subtitle': 'Exquisite Culinary Experience',
+                'brunch': 'Brunch',
+                'lunch': 'Lunch', 
+                'dinner': 'Dinner',
+                'syrniki_name': 'Syrniki',
+                'syrniki_desc': 'Russian cottage cheese pancakes with berry compote',
+                'golden_egg_name': 'Golden Egg',
+                'golden_egg_desc': 'Soft brioche bun with perfectly runny egg, crispy bacon, and house sauce',
+                'oat_bar_name': 'Oat Bar',
+                'oat_bar_desc': 'Creamy cheesecake-flavored oatmeal with graham cracker crumbs and berry topping',
+                'mystery_lunch_name': 'Mystery Lunch',
+                'mystery_lunch_desc': 'Chef\'s surprise - always delicious, never the same twice',
+                'poke_name': 'Poke',
+                'poke_desc': 'Fresh cubed fish with rice, vegetables, and savory sauce',
+                'coconut_ramen_name': 'Coconut Ramen',
+                'coconut_ramen_desc': 'Rich coconut broth with noodles, vegetables, and herbs',
+                'mongo_beef_name': 'Mongo Beef',
+                'mongo_beef_desc': 'Tender beef stir-fry with mongolian-style sauce and vegetables',
+                'something_healthy_name': 'Something Healthy',
+                'something_healthy_desc': 'Fresh seasonal salad with quinoa, avocado, and lemon dressing',
+                'your_order': 'Your Order',
+                'total': 'Total',
+                'name_label': 'Name:',
+                'name_placeholder': 'Your name',
+                'phone_label': 'Phone:',
+                'phone_placeholder': '(555) 123-4567',
+                'pickup_time_label': 'Pickup Time:',
+                'place_order': 'Place Order'
+            },
+            'ru': {
+                'title': 'ПУПСИК',
+                'subtitle': 'Изысканный кулинарный опыт',
+                'brunch': 'Поздний завтрак',
+                'lunch': 'Обед',
+                'dinner': 'Ужин',
+                'syrniki_name': 'Сырники',
+                'syrniki_desc': 'Русские сырники с ягодным компотом',
+                'golden_egg_name': 'Золотое яйцо',
+                'golden_egg_desc': 'Мягкая булочка бриошь с жидким яйцом, хрустящим беконом и домашним соусом',
+                'oat_bar_name': 'Овсяный батончик',
+                'oat_bar_desc': 'Кремовая овсянка со вкусом чизкейка с крошкой и ягодами',
+                'mystery_lunch_name': 'Обед-сюрприз',
+                'mystery_lunch_desc': 'Сюрприз от шефа - всегда вкусно, никогда не повторяется',
+                'poke_name': 'Поке',
+                'poke_desc': 'Свежая нарезанная рыба с рисом, овощами и пикантным соусом',
+                'coconut_ramen_name': 'Кокосовый рамэн',
+                'coconut_ramen_desc': 'Насыщенный кокосовый бульон с лапшой, овощами и травами',
+                'mongo_beef_name': 'Монгольская говядина',
+                'mongo_beef_desc': 'Нежная говядина жареная с монгольским соусом и овощами',
+                'something_healthy_name': 'Что-то полезное',
+                'something_healthy_desc': 'Свежий сезонный салат с киноа, авокадо и лимонной заправкой',
+                'your_order': 'Ваш заказ',
+                'total': 'Итого',
+                'name_label': 'Имя:',
+                'name_placeholder': 'Ваше имя',
+                'phone_label': 'Телефон:',
+                'phone_placeholder': '+7 (999) 123-45-67',
+                'pickup_time_label': 'Время получения:',
+                'place_order': 'Оформить заказ'
+            },
+            'cs': {
+                'title': 'PUPSÍK',
+                'subtitle': 'Vynikající kulinářský zážitek',
+                'brunch': 'Brunch',
+                'lunch': 'Oběd',
+                'dinner': 'Večeře',
+                'syrniki_name': 'Syrniki',
+                'syrniki_desc': 'Ruské tvarohové lívance s ovocným kompótem',
+                'golden_egg_name': 'Zlaté vejce',
+                'golden_egg_desc': 'Měkká briošková houska s tekutým vejcem, křupavou slaninou a domácí omáčkou',
+                'oat_bar_name': 'Ovesná tyčinka',
+                'oat_bar_desc': 'Krémová ovesná kaše s příchutí cheesecaku s drobenkou a ovocem',
+                'mystery_lunch_name': 'Tajemný oběd',
+                'mystery_lunch_desc': 'Překvapení od šéfkuchaře - vždy chutné, nikdy stejné',
+                'poke_name': 'Poké',
+                'poke_desc': 'Čerstvá nakrájená ryba s rýží, zeleninou a pikantní omáčkou',
+                'coconut_ramen_name': 'Kokosový ramen',
+                'coconut_ramen_desc': 'Bohatý kokosový vývar s nudlemi, zeleninou a bylinkami',
+                'mongo_beef_name': 'Mongolské hovězí',
+                'mongo_beef_desc': 'Křehké hovězí smažené s mongolskou omáčkou a zeleninou',
+                'something_healthy_name': 'Něco zdravého',
+                'something_healthy_desc': 'Čerstvý sezónní salát s quinoou, avokádem a citronovou zálivkou',
+                'your_order': 'Vaše objednávka',
+                'total': 'Celkem',
+                'name_label': 'Jméno:',
+                'name_placeholder': 'Vaše jméno',
+                'phone_label': 'Telefon:',
+                'phone_placeholder': '+420 123 456 789',
+                'pickup_time_label': 'Čas vyzvednutí:',
+                'place_order': 'Objednat'
+            }
+        };
+
+        let currentLanguage = 'en';
+        
         const menu = {
             'syrniki': { name: 'Syrniki', price: 195 },
             'golden-egg': { name: 'Golden Egg', price: 165 },
@@ -436,6 +619,34 @@
         };
         
         let cart = {};
+        
+        function changeLanguage(lang) {
+            currentLanguage = lang;
+            
+            // Update active language button
+            document.querySelectorAll('.lang-option').forEach(option => {
+                option.classList.remove('active');
+                if (option.dataset.lang === lang) {
+                    option.classList.add('active');
+                }
+            });
+            
+            // Update all translatable elements
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                const key = element.dataset.translate;
+                if (translations[lang] && translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+            
+            // Update placeholders
+            document.querySelectorAll('[data-translate-placeholder]').forEach(element => {
+                const key = element.dataset.translatePlaceholder;
+                if (translations[lang] && translations[lang][key]) {
+                    element.placeholder = translations[lang][key];
+                }
+            });
+        }
         
         function changeQuantity(item, change) {
             if (!cart[item]) cart[item] = 0;
