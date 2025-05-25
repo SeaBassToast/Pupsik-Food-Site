@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>What's for Dinner? - Food Ordering</title>
+    <title>Pupsik - Fine Dining Experience</title>
     <style>
         * {
             margin: 0;
@@ -12,102 +12,119 @@
         }
         
         body {
-            font-family: 'Georgia', serif;
-            background: linear-gradient(135deg, #E8B4B8, #D4A574);
+            font-family: 'Playfair Display', 'Times New Roman', serif;
+            background: linear-gradient(135deg, #f8f6f3, #e8e5e1);
             min-height: 100vh;
-            padding: 20px;
+            padding: 40px 20px;
+            color: #2c2c2c;
         }
         
         .container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border: 1px solid #e0ddd8;
             overflow: hidden;
         }
         
         .header {
-            background: #2C3E50;
-            color: white;
-            padding: 30px;
+            background: linear-gradient(135deg, #1a1a1a, #2c2c2c);
+            color: #f8f6f3;
+            padding: 50px 40px;
             text-align: center;
+            border-bottom: 2px solid #d4af37;
         }
         
         .header h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
+            font-size: 3em;
+            margin-bottom: 15px;
+            font-weight: 400;
+            letter-spacing: 2px;
+            color: #d4af37;
         }
         
         .menu {
-            padding: 30px;
+            padding: 50px 40px;
         }
         
         .menu-section {
-            margin-bottom: 30px;
+            margin-bottom: 50px;
         }
         
         .menu-section h2 {
-            color: #2C3E50;
-            border-bottom: 2px solid #FF6B6B;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
+            color: #1a1a1a;
+            border-bottom: 1px solid #d4af37;
+            padding-bottom: 15px;
+            margin-bottom: 35px;
+            font-size: 1.8em;
+            font-weight: 300;
+            letter-spacing: 1px;
+            text-transform: uppercase;
         }
         
         .menu-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px;
-            margin: 10px 0;
-            background: #F5F5F5;
-            border-radius: 8px;
-            transition: transform 0.2s;
+            padding: 25px 20px;
+            margin: 15px 0;
+            background: #fafafa;
+            border: 1px solid #e8e5e1;
+            border-radius: 4px;
+            transition: all 0.3s ease;
         }
         
         .menu-item:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            background: #ffffff;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            border-color: #d4af37;
         }
         
         .item-left {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 25px;
+            flex: 1;
         }
         
-        .food-emoji {
-            font-size: 2.5em;
-            width: 60px;
-            height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: white;
+        .food-icon {
+            width: 8px;
+            height: 8px;
+            background: #d4af37;
             border-radius: 50%;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            flex-shrink: 0;
         }
         
         .item-info h3 {
-            color: #2C3E50;
-            margin-bottom: 5px;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+            font-size: 1.3em;
+            font-weight: 400;
+            letter-spacing: 0.5px;
         }
         
         .item-info p {
-            color: #666;
-            font-size: 0.9em;
+            color: #666666;
+            font-size: 1em;
+            line-height: 1.5;
+            font-style: italic;
         }
         
         .item-controls {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 25px;
         }
         
         .price {
-            font-weight: bold;
-            color: #FF6B6B;
-            font-size: 1.1em;
+            font-weight: 300;
+            color: #1a1a1a;
+            font-size: 1.2em;
+            letter-spacing: 0.5px;
+            min-width: 80px;
+            text-align: right;
         }
         
         .quantity-control {
@@ -117,17 +134,21 @@
         }
         
         .btn {
-            background: #2C3E50;
-            color: white;
-            border: none;
-            padding: 8px 12px;
-            border-radius: 5px;
+            background: #1a1a1a;
+            color: #f8f6f3;
+            border: 1px solid #1a1a1a;
+            padding: 10px 16px;
+            border-radius: 2px;
             cursor: pointer;
-            font-size: 1em;
+            font-size: 0.9em;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
         }
         
         .btn:hover {
-            background: #1A252F;
+            background: #f8f6f3;
+            color: #1a1a1a;
         }
         
         .btn-small {
@@ -142,71 +163,87 @@
         }
         
         .cart {
-            background: #F9F9F9;
-            padding: 30px;
-            border-top: 3px solid #FF6B6B;
+            background: #f8f6f3;
+            padding: 50px 40px;
+            border-top: 2px solid #d4af37;
         }
         
         .cart h2 {
-            color: #2C3E50;
-            margin-bottom: 20px;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            font-size: 1.8em;
+            font-weight: 300;
+            letter-spacing: 1px;
+            text-transform: uppercase;
         }
         
         .cart-item {
             display: flex;
             justify-content: space-between;
-            padding: 10px 0;
-            border-bottom: 1px solid #DDD;
+            padding: 15px 0;
+            border-bottom: 1px solid #e0ddd8;
+            font-size: 1.1em;
         }
         
         .total {
-            font-size: 1.3em;
-            font-weight: bold;
-            color: #2C3E50;
-            margin-top: 15px;
-            padding-top: 15px;
-            border-top: 2px solid #FF6B6B;
+            font-size: 1.4em;
+            font-weight: 400;
+            color: #1a1a1a;
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 2px solid #d4af37;
+            letter-spacing: 1px;
         }
         
         .order-btn {
             width: 100%;
-            padding: 15px;
-            font-size: 1.2em;
-            margin-top: 20px;
-            background: #FF6B6B;
+            padding: 18px;
+            font-size: 1.1em;
+            margin-top: 30px;
+            background: #d4af37;
+            color: #1a1a1a;
+            font-weight: 400;
+            letter-spacing: 1px;
+            text-transform: uppercase;
         }
         
         .order-btn:hover {
-            background: #E85A5A;
+            background: #1a1a1a;
+            color: #f8f6f3;
         }
         
         .customer-info {
-            margin-top: 20px;
-            padding: 20px;
-            background: white;
-            border-radius: 8px;
+            margin-top: 30px;
+            padding: 30px;
+            background: #ffffff;
+            border: 1px solid #e0ddd8;
+            border-radius: 4px;
         }
         
         .customer-info input {
             width: 100%;
-            padding: 10px;
-            margin: 5px 0 15px 0;
-            border: 1px solid #DDD;
-            border-radius: 5px;
+            padding: 15px;
+            margin: 8px 0 20px 0;
+            border: 1px solid #e0ddd8;
+            border-radius: 2px;
             font-size: 1em;
+            font-family: 'Playfair Display', serif;
+            background: #fafafa;
         }
         
         .customer-info label {
-            font-weight: bold;
-            color: #2C3E50;
+            font-weight: 400;
+            color: #1a1a1a;
+            font-size: 1.1em;
+            letter-spacing: 0.5px;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>🍽️ Food for Pupsik</h1>
-            <p>Your favorite meals, ready to order</p>
+            <h1>PUPSIK</h1>
+            <p>Exquisite Culinary Experience</p>
         </div>
         
         <div class="menu">
@@ -214,7 +251,7 @@
                 <h2>Brunch</h2>
                 <div class="menu-item">
                     <div class="item-left">
-                        <div class="food-emoji">🥞</div>
+                        <div class="food-icon"></div>
                         <div class="item-info">
                             <h3>Syrniki</h3>
                             <p>Russian cottage cheese pancakes with berry compote</p>
@@ -232,7 +269,7 @@
                 
                 <div class="menu-item">
                     <div class="item-left">
-                        <div class="food-emoji">🍳</div>
+                        <div class="food-icon"></div>
                         <div class="item-info">
                             <h3>Golden Egg</h3>
                             <p>Soft brioche bun with perfectly runny egg, crispy bacon, and house sauce</p>
@@ -250,7 +287,7 @@
                 
                 <div class="menu-item">
                     <div class="item-left">
-                        <div class="food-emoji">🥣</div>
+                        <div class="food-icon"></div>
                         <div class="item-info">
                             <h3>Oat Bar</h3>
                             <p>Creamy cheesecake-flavored oatmeal with graham cracker crumbs and berry topping</p>
@@ -271,7 +308,7 @@
                 <h2>Lunch</h2>
                 <div class="menu-item">
                     <div class="item-left">
-                        <div class="food-emoji">🎁</div>
+                        <div class="food-icon"></div>
                         <div class="item-info">
                             <h3>Mystery Lunch</h3>
                             <p>Chef's surprise - always delicious, never the same twice</p>
@@ -289,7 +326,7 @@
                 
                 <div class="menu-item">
                     <div class="item-left">
-                        <div class="food-emoji">🐟</div>
+                        <div class="food-icon"></div>
                         <div class="item-info">
                             <h3>Poke</h3>
                             <p>Fresh cubed fish with rice, vegetables, and savory sauce</p>
@@ -309,9 +346,12 @@
             <div class="menu-section">
                 <h2>Dinner</h2>
                 <div class="menu-item">
-                    <div class="item-info">
-                        <h3>Coconut Ramen</h3>
-                        <p>Rich coconut broth with noodles, vegetables, and herbs</p>
+                    <div class="item-left">
+                        <div class="food-icon"></div>
+                        <div class="item-info">
+                            <h3>Coconut Ramen</h3>
+                            <p>Rich coconut broth with noodles, vegetables, and herbs</p>
+                        </div>
                     </div>
                     <div class="item-controls">
                         <span class="price">235 Kč</span>
@@ -324,9 +364,12 @@
                 </div>
                 
                 <div class="menu-item">
-                    <div class="item-info">
-                        <h3>Mongo Beef</h3>
-                        <p>Tender beef stir-fry with mongolian-style sauce and vegetables</p>
+                    <div class="item-left">
+                        <div class="food-icon"></div>
+                        <div class="item-info">
+                            <h3>Mongo Beef</h3>
+                            <p>Tender beef stir-fry with mongolian-style sauce and vegetables</p>
+                        </div>
                     </div>
                     <div class="item-controls">
                         <span class="price">340 Kč</span>
@@ -339,9 +382,12 @@
                 </div>
                 
                 <div class="menu-item">
-                    <div class="item-info">
-                        <h3>Something Healthy</h3>
-                        <p>Fresh seasonal salad with quinoa, avocado, and lemon dressing</p>
+                    <div class="item-left">
+                        <div class="food-icon"></div>
+                        <div class="item-info">
+                            <h3>Something Healthy</h3>
+                            <p>Fresh seasonal salad with quinoa, avocado, and lemon dressing</p>
+                        </div>
                     </div>
                     <div class="item-controls">
                         <span class="price">190 Kč</span>
